@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .welcome-screen {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 66, 134, 0.1), rgba(253, 127, 120, 0.1));
+            padding: 20px;
+        }
+
+        .welcome-content {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .welcome-title {
+            font-size: 48px;
+            color: #6E6E6E;
+            margin-bottom: 20px;
+            font-family: Merienda, cursive;
+        }
+
+        .welcome-subtitle {
+            font-size: 20px;
+            color: #6E6E6E;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .welcome-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .welcome-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 30px;
+            font-family: Merienda;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            min-width: 200px;
+        }
+
+        .welcome-button.primary {
+            background: linear-gradient(135deg, #FF4286, #FD7F78);
+            color: white;
+            border: none;
+        }
+
+        .welcome-button.secondary {
+            background: white;
+            color: #FF4286;
+            border: 2px solid #FF4286;
+        }
+
+        .welcome-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-button.secondary:hover {
+            background: #FF4286;
+            color: white;
+        }
+
+        @media (max-width: 767px) {
+            .welcome-title {
+                font-size: 36px;
+            }
+
+            .welcome-subtitle {
+                font-size: 18px;
+            }
+
+            .welcome-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .welcome-button {
+                width: 100%;
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 28px;
+            }
+
+            .welcome-subtitle {
+                font-size: 16px;
+            }
+
+            .welcome-button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1 class="welcome-title">Welcome</h1>
+        <p class="welcome-subtitle">Join our community and start your journey with us</p>
+        <div class="welcome-buttons">
+            <a href="login.html" class="welcome-button primary">Login</a>
+            <a href="signup.html" class="welcome-button secondary">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html> 

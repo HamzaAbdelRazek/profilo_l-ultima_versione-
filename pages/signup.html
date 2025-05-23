@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .profile-card {
+            width: 800px; /* Increased width */
+            height: auto; /* Auto height to fit content */
+            padding-top: 100px; /* Increased padding-top to make space for positioned h2 and image */
+            padding-bottom: 40px; /* Adjust padding bottom */
+            position: relative; /* Ensure positioning context for absolute h2 */
+        }
+        /* Remove specific styles for .profile-card .profile-pic here */
+        /* These styles are now handled by the general .profile-pic rule in styles.css */
+
+         /* Position h2 absolutely */
+        .profile-card h2 {
+            position: absolute;
+            top: 10x; /* 100px padding + 4px distance from padding top */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Remove margin-top as position is absolute */
+            margin-top: -98px; 
+            font-size: 42px; /* Keep consistent font size */
+             font-family:'Merienda', cursive;
+             color: #6E6E6E;
+             width: 100%; /* Allow h2 to take full width for centering */
+             text-align: center; /* Ensure text inside h2 is centered */
+        }
+
+         /* Specific styles for the profile upload area in signup */
+        .profile-card .profile-upload {
+            margin-top: -120px; /* Adjusted margin-top to position the container correctly */
+            margin-bottom: 20px; /* Space below the upload area */
+             /* Center the upload area */
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 2; /* Ensure it's above the h2 if needed */
+            position: relative; /* Needed for z-index to work */
+        }
+
+        /* Adjust form margin-top to create space below the absolute h2 and profile upload */
+        .profile-card .auth-form {
+            margin-top: 80px; /* Added margin-top to push form down */
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bg">
+        <div class="bubble1"></div>
+        <div class="bubble2"></div>
+        <div class="bubble3"></div>
+        <div class="bubble4"></div>
+        <div class="bubble5"></div>
+        <div class="bubble6"></div>
+        <div class="bubble7"></div>
+        <div class="bubble8"></div>
+        <div class="bubble9"></div>
+        <div class="bubble10"></div>
+    </div>
+
+    <div class="profile-card">
+        <h2>Sign Up</h2>
+        <form id="signupForm" class="auth-form">
+            <!-- Profile Picture Upload Section -->
+            <div class="profile-upload" id="profileUploadArea">
+                <div class="profile-preview">
+                    <img id="profileImagePreview" src="../assets/default-avatar.png" alt="Profile Preview">
+                </div>
+                <div class="upload-overlay">
+                    <span>Upload Photo</span>
+                </div>
+                <input type="file" id="avatar" accept="image/*" style="display: none;">
+            </div>
+            <!-- End Profile Picture Upload Section -->
+
+            <div class="form-group">
+                <input type="text" id="fullName" required placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" required placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" required placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirmPassword" required placeholder="Confirm Password">
+            </div>
+            <div class="form-group">
+                <input type="text" id="location" required placeholder="Location">
+            </div>
+            <div class="form-group">
+                <input type="text" id="role" required placeholder="Role">
+            </div>
+            <div class="stats-inputs">
+                <div class="form-group">
+                    <input type="number" id="projects" required placeholder="Projects" min="0">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="posts" required placeholder="Posts" min="0">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="experience" required placeholder="Experience" min="0">
+                </div>
+            </div>
+            <button type="submit" class="auth-button">Create Account</button>
+        </form>
+        <p class="auth-footer">
+            Already have an account? <a href="login.html">Login</a>
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module">
+        import { signUp, supabase } from '../js/supabase.js'
+
+        const signupForm = document.getElementById('signupForm')
+        const profileUploadArea = document.getElementById('profileUploadArea');
+        const avatarInput = document.getElementById('avatar');
+        const profileImagePreview = document.getElementById('profileImagePreview');
+
+        // Trigger file input on upload area click
+        profileUploadArea.addEventListener('click', () => {
+            avatarInput.click();
+        });
+
+        // Display image preview
+        avatarInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImagePreview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+            const confirmPassword = document.getElementById('confirmPassword').value
+            const fullName = document.getElementById('fullName').value;
+            const location = document.getElementById('location').value;
+            const role = document.getElementById('role').value;
+            const projects = parseInt(document.getElementById('projects').value) || 0;
+            const posts = parseInt(document.getElementById('posts').value) || 0;
+            const experience = parseInt(document.getElementById('experience').value) || 0;
+            const avatarFile = avatarInput.files[0];
+
+            // Validazione password
+            if (password !== confirmPassword) {
+                alert('Passwords do not match')
+                return
+            }
+
+            // Validazione complessità password
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            
+            if (password.length < minLength) {
+                alert('Password must be at least 8 characters long')
+                return
+            }
+            if (!hasUpperCase) {
+                alert('Password must contain at least one uppercase letter')
+                return
+            }
+            if (!hasLowerCase) {
+                alert('Password must contain at least one lowercase letter')
+                return
+            }
+            if (!hasNumbers) {
+                alert('Password must contain at least one number')
+                return
+            }
+            if (!hasSpecialChar) {
+                alert('Password must contain at least one special character')
+                return
+            }
+
+            try {
+                // 1. Sign up the user
+                const { data, error } = await signUp(email, password)
+                if (error) throw error
+
+                const userId = data.user.id;
+                let avatarUrl = null;
+
+                // 2. Upload avatar if selected
+                if (avatarFile) {
+                    const fileExt = avatarFile.name.split('.').pop();
+                    const fileName = `${userId}.${fileExt}`;
+                    const filePath = `${userId}/${fileName}`;
+
+                    const { error: uploadError } = await supabase.storage
+                        .from('profiles')
+                        .upload(filePath, avatarFile);
+
+                    if (uploadError) {
+                        console.error('Error uploading avatar:', uploadError);
+                        // Optionally, still create user but without avatar
+                    } else {
+                        // Get public URL
+                        const { data: publicUrlData } = supabase.storage
+                            .from('profiles')
+                            .getPublicUrl(filePath);
+                        avatarUrl = publicUrlData.publicUrl;
+                    }
+                }
+
+                // 3. Insert user data into profiles table
+                const { error: profileError } = await supabase
+                    .from('profiles')
+                    .insert([
+                        {
+                            id: userId,
+                            full_name: fullName,
+                            email: email,
+                            location: location,
+                            role: role,
+                            projects: projects,
+                            posts: posts,
+                            experience: experience,
+                            avatar_url: avatarUrl // Include avatar URL
+                        }
+                    ]);
+
+                if (profileError) throw profileError;
+                
+                alert('Account created successfully!');
+                window.location.href = 'index.html'; // Redirect to profile page
+
+            } catch (error) {
+                console.error('Signup process failed:', error);
+                alert(error.message);
+            }
+        });
+    </script>
+
+    <script>
+        document.querySelectorAll('.bubble').forEach(bubble => {
+            let duration = Math.random() * 5 + 5;
+            let delay = Math.random() * 3;
+            bubble.style.animationDuration = `${duration}s`;
+            bubble.style.animationDelay = `${delay}s`;
+        });
+
+        // Password validation (Keep this here as it's specific to signup page input interaction)
+        const passwordInput = document.getElementById('password');
+        const requirements = {
+            length: document.getElementById('length'),
+            uppercase: document.getElementById('uppercase'),
+            lowercase: document.getElementById('lowercase'),
+            number: document.getElementById('number'),
+            special: document.getElementById('special')
+        };
+
+        passwordInput.addEventListener('input', function() {
+            const password = this.value;
+            
+            // Check length
+            if (password.length >= 8) {
+                requirements.length.classList.add('valid');
+                requirements.length.classList.remove('invalid');
+            } else {
+                requirements.length.classList.add('invalid');
+                requirements.length.classList.remove('valid');
+            }
+            
+            // Check uppercase
+            if (/[A-Z]/.test(password)) {
+                requirements.uppercase.classList.add('valid');
+                requirements.uppercase.classList.remove('invalid');
+            } else {
+                requirements.uppercase.classList.add('invalid');
+                requirements.uppercase.classList.remove('valid');
+            }
+            
+            // Check lowercase
+            if (/[a-z]/.test(password)) {
+                requirements.lowercase.classList.add('valid');
+                requirements.lowercase.classList.remove('invalid');
+            } else {
+                requirements.lowercase.classList.add('invalid');
+                requirements.lowercase.classList.remove('valid');
+            }
+            
+            // Check number
+            if (/\d/.test(password)) {
+                requirements.number.classList.add('valid');
+                requirements.number.classList.remove('invalid');
+            } else {
+                requirements.number.classList.add('invalid');
+                requirements.number.classList.remove('valid');
+            }
+            
+            // Check special character
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                requirements.special.classList.add('valid');
+                requirements.special.classList.remove('invalid');
+            } else {
+                requirements.special.classList.add('invalid');
+                requirements.special.classList.remove('valid');
+            }
+        });
+    </script>
+</body>
+</html> 

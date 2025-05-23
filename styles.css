@@ -1,0 +1,754 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Merienda;
+    color: #6E6E6E;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-top: 100px;
+  }
+  
+  /* Header sfumato */
+  .header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 234px;
+    background: linear-gradient(135deg, #FF4286, #FD7F78);
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  .profile-card {
+    background: white;
+    border-radius: 60px;
+    padding: 60px 20px 30px;
+    width: 700px;
+    height: 400px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+    text-align: center;
+  }
+  
+  /* Cerchi decorativi */
+  .profile-card::before,
+  .profile-card::after {
+    content: "";
+    position: absolute;
+    top: 29px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+  }
+  
+  .profile-card::before {
+    left: 25px;
+    background-color: #FF4286;
+  }
+  
+  .profile-card::after {
+    right: 25px;
+    background-color: #FD7F78;
+  }
+  
+  .profile-pic {
+    position: absolute;
+    top: -100px;
+    left: 35.7%;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  h2 {
+    font-family:'Merienda', cursive;
+    font-size: 42px;
+    margin-top: 40px;
+    color: #6E6E6E;
+  }
+  
+  .location {
+    font-size: 16px;
+    color: #6E6E6E;
+    margin-bottom: 10px;
+  }
+  
+  .role {
+    margin-top: 60px;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #6E6E6E;
+  }
+  
+  .stats {
+    margin-left: 23.9%;
+    width: 350px;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 18px;
+    color: #6E6E6E;
+    
+  }
+  
+  .stats strong {
+    font-size: 24px;
+    color: #6E6E6E;
+  }
+
+  @keyframes waveMotion {
+    0% { transform: translate(-100%, 0); }
+    100% { transform: translate(100vw, 0); }
+  }
+
+  .bubble1 {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(217, 217, 217, 0.2);
+    border-radius: 50%;
+    top: 10%;
+    left: 0;
+    animation: waveMotion 15s linear infinite;
+  }
+
+  .bubble2 {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: rgba(217, 217, 217, 0.25);
+    border-radius: 50%;
+    top: 20%;
+    left: 0;
+    animation: waveMotion 30s linear infinite;
+  }
+
+  .bubble3 {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: rgba(217, 217, 217, 0.15);
+    border-radius: 50%;
+    top: 30%;
+    left: 0;
+    animation: waveMotion 20s linear infinite;
+  }
+
+  .bubble4 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: rgba(217, 217, 217, 0.2);
+    border-radius: 50%;
+    top: 40%;
+    left: 0;
+    animation: waveMotion 17s linear infinite;
+  }
+
+  .bubble5 {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: rgba(217, 217, 217, 0.1);
+    border-radius: 50%;
+    top: 50%;
+    left: 0;
+    animation: waveMotion 22s linear infinite;
+  }
+
+  .bubble6 {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: rgba(217, 217, 217, 0.3);
+    border-radius: 50%;
+    top: 60%;
+    left: 0;
+    animation: waveMotion 9s linear infinite;
+  }
+
+  .bubble7 {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    background: rgba(217, 217, 217, 0.2);
+    border-radius: 50%;
+    top: 70%;
+    left: 0;
+    animation: waveMotion 21s linear infinite;
+  }
+
+  .bubble8 {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: rgba(217, 217, 217, 0.18);
+    border-radius: 50%;
+    top: 80%;
+    left: 0;
+    animation: waveMotion 16s linear infinite;
+  }
+
+  .bubble9 {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background: rgba(217, 217, 217, 0.22);
+    border-radius: 50%;
+    top: 90%;
+    left: 0;
+    animation: waveMotion 13s linear infinite;
+  }
+
+  .bubble10 {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    background: rgba(217, 217, 217, 0.16);
+    border-radius: 50%;
+    top: 15%;
+    left: 0;
+    animation: waveMotion 24s linear infinite;
+  }
+
+  @media (max-width: 240px) {
+    body {
+      padding-top: 60px;
+    }
+  
+    .profile-card {
+      width: 95%;
+      height: auto;
+      padding: 40px 10px 20px;
+      border-radius: 40px;
+    }
+  
+    .profile-pic {
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+    }
+  
+    h2 {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+  
+    .role {
+      font-size: 12px;
+      margin-top: 30px;
+    }
+  
+    .stats {
+      flex-direction: column;
+      gap: 5px;
+      margin-left: 0;
+      width: 100%;
+      font-size: 10px;
+    }
+  
+    .stats strong {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    body {
+      padding-top: 80px;
+    }
+  
+    .profile-card {
+      width: 90%;
+      height: auto;
+      padding: 50px 20px 30px;
+      border-radius: 50px;
+    }
+  
+    .profile-pic {
+      top: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 150px;
+    }
+  
+    h2 {
+      font-size: 30px;
+      margin-top: 30px;
+    }
+  
+    .role {
+      font-size: 20px;
+      margin-top: 40px;
+    }
+  
+    .stats {
+      margin-left: 0;
+      width: 100%;
+      font-size: 16px;
+      justify-content: space-around;
+    }
+  
+    .stats strong {
+      font-size: 20px;
+    }
+  }
+  
+  /* Add these styles after the existing styles */
+
+.main-nav {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-button {
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-family: Merienda;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-button.login {
+    background: white;
+    color: #FF4286;
+    border: 2px solid #FF4286;
+}
+
+.nav-button.login:hover {
+    background: #FF4286;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.nav-button.signup {
+    background: linear-gradient(135deg, #FF4286, #FD7F78);
+    color: white;
+    border: none;
+}
+
+.nav-button.signup:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 66, 134, 0.3);
+}
+
+/* Desktop specific styles */
+@media (min-width: 768px) {
+    .main-nav {
+        top: 30px;
+        right: 30px;
+    }
+
+    .nav-buttons {
+        gap: 20px;
+    }
+
+    .nav-button {
+        padding: 12px 30px;
+        font-size: 18px;
+    }
+}
+
+/* Mobile specific styles */
+@media (max-width: 767px) {
+    .main-nav {
+        top: 15px;
+        right: 15px;
+    }
+
+    .nav-buttons {
+        gap: 10px;
+    }
+
+    .nav-button {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 240px) {
+    .main-nav {
+        top: 10px;
+        right: 10px;
+    }
+
+    .nav-buttons {
+        gap: 8px;
+    }
+
+    .nav-button {
+        padding: 6px 15px;
+        font-size: 12px;
+    }
+}
+
+/* Add these styles after the existing styles */
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.profile-section {
+    flex: 1;
+    max-width: 700px;
+}
+
+.auth-section {
+    flex: 1;
+    max-width: 500px;
+    display: none;
+    position: relative;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 60px;
+    padding: 40px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    border: 2px solid rgba(255, 66, 134, 0.1);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 66, 134, 0.1);
+    color: #FF4286;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-button:hover {
+    background: #FF4286;
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Desktop specific styles */
+@media (min-width: 768px) {
+    .main-container {
+        padding: 40px;
+        margin-top: 60px;
+    }
+
+    .auth-section {
+        position: sticky;
+        top: 100px;
+    }
+
+    .auth-section.active {
+        display: block;
+        animation: slideIn 0.3s ease-out;
+    }
+
+    .auth-card {
+        padding: 50px;
+    }
+
+    .close-button {
+        top: 25px;
+        right: 25px;
+        width: 35px;
+        height: 35px;
+        font-size: 28px;
+    }
+}
+
+/* Mobile specific styles */
+@media (max-width: 767px) {
+    .main-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .profile-section {
+        max-width: 100%;
+    }
+
+    .auth-section {
+        display: none !important;
+    }
+
+    .auth-card {
+        padding: 30px 20px;
+        border-radius: 40px;
+    }
+
+    .close-button {
+        top: 15px;
+        right: 15px;
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 240px) {
+    .main-container {
+        padding: 10px;
+    }
+}
+
+/* Add animation keyframes */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Update form styles for better decoration */
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid rgba(255, 66, 134, 0.2);
+    border-radius: 30px;
+    font-size: 16px;
+    font-family: Merienda;
+    color: #6E6E6E;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #FF4286;
+    box-shadow: 0 0 15px rgba(255, 66, 134, 0.1);
+    background: white;
+}
+
+.auth-button {
+    background: linear-gradient(135deg, #FF4286, #FD7F78);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-family: Merienda;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 66, 134, 0.2);
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 66, 134, 0.3);
+}
+
+/* Add these styles for profile upload */
+.profile-upload {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-upload-preview {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 3px solid #FF4286;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.profile-upload-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 66, 134, 0.2);
+}
+
+.profile-upload-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.upload-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 66, 134, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.upload-overlay span {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.profile-upload-input {
+    display: none;
+}
+
+/* Desktop specific styles */
+@media (min-width: 768px) {
+    .profile-upload-preview {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
+    }
+
+    .upload-overlay span {
+        font-size: 16px;
+    }
+}
+
+/* Mobile specific styles */
+@media (max-width: 767px) {
+    .profile-upload-preview {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    .upload-overlay span {
+        font-size: 12px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 240px) {
+    .profile-upload-preview {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+    .upload-overlay span {
+        font-size: 10px;
+    }
+}
+
+/* Add styles for stats inputs */
+.stats-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stats-inputs .form-group {
+    margin: 0;
+}
+
+.stats-inputs input {
+    text-align: center;
+    font-size: 14px;
+    padding: 12px 10px;
+}
+
+.stats-inputs input::-webkit-inner-spin-button,
+.stats-inputs input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.stats-inputs input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Desktop specific styles */
+@media (min-width: 768px) {
+    .stats-inputs {
+        gap: 20px;
+    }
+
+    .stats-inputs input {
+        font-size: 16px;
+        padding: 15px 10px;
+    }
+}
+
+/* Mobile specific styles */
+@media (max-width: 767px) {
+    .stats-inputs {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stats-inputs input {
+        font-size: 14px;
+        padding: 12px 10px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 240px) {
+    .stats-inputs {
+        gap: 8px;
+    }
+
+    .stats-inputs input {
+        font-size: 12px;
+        padding: 10px 8px;
+    }
+}
+  

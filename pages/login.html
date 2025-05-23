@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header-bg">
+        <div class="bubble1"></div>
+        <div class="bubble2"></div>
+        <div class="bubble3"></div>
+        <div class="bubble4"></div>
+        <div class="bubble5"></div>
+        <div class="bubble6"></div>
+        <div class="bubble7"></div>
+        <div class="bubble8"></div>
+        <div class="bubble9"></div>
+        <div class="bubble10"></div>
+    </div>
+
+    <div class="profile-card">
+        <h2>Login</h2>
+        <form id="loginForm" class="auth-form">
+            <div class="form-group">
+                <input type="email" id="email" required placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" required placeholder="Password">
+            </div>
+            <button type="submit" class="auth-button">Login</button>
+        </form>
+        <p class="auth-footer">
+            Don't have an account? <a href="signup.html">Sign Up</a>
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module">
+        import { signIn, supabase } from '../js/supabase.js'
+
+        const loginForm = document.getElementById('loginForm')
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault()
+            
+            const email = document.getElementById('email').value
+            const password = document.getElementById('password').value
+
+            try {
+                const { data, error } = await signIn(email, password)
+                if (error) throw error
+                
+                window.location.href = 'index.html'
+            } catch (error) {
+                alert(error.message)
+            }
+        })
+    </script>
+
+    <script>
+        document.querySelectorAll('.bubble').forEach(bubble => {
+            let duration = Math.random() * 5 + 5;
+            let delay = Math.random() * 3;
+            bubble.style.animationDuration = `${duration}s`;
+            bubble.style.animationDelay = `${delay}s`;
+        });
+    </script>
+</body>
+</html> 

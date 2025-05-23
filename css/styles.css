@@ -1,0 +1,453 @@
+/* Global Styles */
+:root {
+    --primary-color: #FF4286;
+    --secondary-color: #FD7F78;
+    --text-color: #6E6E6E;
+    --background-color: #FFFFFF;
+    --border-radius: 25px;
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Merienda', cursive;
+    min-height: 100vh;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-top: 100px;
+    position: relative;
+}
+
+/* Default body background for main page */
+body.welcome {
+    background: linear-gradient(135deg, rgba(255, 66, 134, 0.1), rgba(253, 127, 120, 0.1));
+    padding-top: 0; /* No padding top for welcome screen */
+    justify-content: center; /* Center content vertically */
+}
+
+/* Header sfumato (for other pages) */
+.header-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 234px;
+    background: linear-gradient(135deg, #FF4286, #FD7F78);
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Keep existing header bubble styles for other pages */
+.header-bg .bubble1 { position: absolute; width: 60px; height: 60px; background: rgba(217, 217, 217, 0.2); border-radius: 50%; top: 10%; left: -100px; animation: moveRight 8s linear infinite; }
+.header-bg .bubble2 { position: absolute; width: 140px; height: 140px; background: rgba(217, 217, 217, 0.25); border-radius: 50%; top: 20%; left: -100px; animation: moveRight 12s linear infinite; animation-delay: 1s; }
+.header-bg .bubble3 { position: absolute; width: 70px; height: 70px; background: rgba(217, 217, 217, 0.15); border-radius: 50%; top: 30%; left: -100px; animation: moveRight 10s linear infinite; animation-delay: 2s; }
+.header-bg .bubble4 { position: absolute; width: 50px; height: 50px; background: rgba(217, 217, 217, 0.2); border-radius: 50%; top: 40%; left: -100px; animation: moveRight 15s linear infinite; animation-delay: 3s; }
+.header-bg .bubble5 { position: absolute; width: 90px; height: 90px; background: rgba(217, 217, 217, 0.1); border-radius: 50%; top: 50%; left: -100px; animation: moveRight 9s linear infinite; animation-delay: 4s; }
+.header-bg .bubble6 { position: absolute; width: 35px; height: 35px; background: rgba(217, 217, 217, 0.3); border-radius: 50%; top: 60%; left: -100px; animation: moveRight 11s linear infinite; animation-delay: 5s; }
+.header-bg .bubble7 { position: absolute; width: 55px; height: 55px; background: rgba(217, 217, 217, 0.2); border-radius: 50%; top: 70%; left: -100px; animation: moveRight 13s linear infinite; animation-delay: 6s; }
+.header-bg .bubble8 { position: absolute; width: 65px; height: 65px; background: rgba(217, 217, 217, 0.18); border-radius: 50%; top: 80%; left: -100px; animation: moveRight 7s linear infinite; animation-delay: 7s; }
+.header-bg .bubble9 { position: absolute; width: 45px; height: 45px; background: rgba(217, 217, 217, 0.22); border-radius: 50%; top: 90%; left: -100px; animation: moveRight 14s linear infinite; animation-delay: 8s; }
+.header-bg .bubble10 { position: absolute; width: 75px; height: 75px; background: rgba(217, 217, 217, 0.16); border-radius: 50%; top: 15%; left: -100px; animation: moveRight 16s linear infinite; animation-delay: 9s; }
+
+/* Animation for bubbles in header */
+@keyframes moveRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(100vw + 200px));
+    }
+}
+
+/* Profile Card (used in login, signup, and index) */
+.profile-card {
+    margin-top: 85px; /* Adjusted for header */
+    background: white;
+    border-radius: 60px;
+    padding: 60px 20px 30px;
+    width: 700px;
+    height: 400px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+    text-align: center;
+}
+
+/* Cerchi decorativi (for profile card) */
+.profile-card::before,
+.profile-card::after {
+    content: "";
+    position: absolute;
+    top: 29px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.profile-card::before { left: 25px; background-color: #FF4286; }
+.profile-card::after { right: 25px; background-color: #FD7F78; }
+
+.profile-pic {
+    position: absolute;
+    top: -100px;
+    left: 50%; /* Center the profile pic */
+    transform: translateX(-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+}
+
+.profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+
+h2 {
+    font-family:'Merienda', cursive;
+    font-size: 42px;
+    margin-top: 40px; /* Adjusted margin */
+    color: #6E6E6E;
+}
+
+.location { font-size: 16px; color: #6E6E6E; margin-bottom: 10px; }
+
+.role { margin-top: 60px; font-size: 24px; font-weight: 500; margin-bottom: 20px; color: #6E6E6E; }
+
+.stats {
+    margin-left: auto; /* Center stats */
+    margin-right: auto; /* Center stats */
+    width: 350px;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 18px;
+    color: #6E6E6E;
+}
+
+.stats strong { font-size: 24px; color: #6E6E6E; }
+
+/* Welcome Screen Styles (for main page content) */
+.welcome-container {
+    text-align: center;
+    z-index: 1; /* Ensure content is above background */
+}
+
+.welcome-title {
+    font-size: 48px;
+    color: #6E6E6E;
+    margin-bottom: 20px;
+    font-family: Merienda, cursive;
+}
+
+.welcome-subtitle {
+    font-size: 20px;
+    color: #6E6E6E;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.welcome-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.welcome-button {
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 30px;
+    font-family: Merienda;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    min-width: 200px;
+    text-align: center;
+}
+
+.welcome-button.primary {
+    background: linear-gradient(135deg, #FF4286, #FD7F78);
+    color: white;
+    border: none;
+}
+
+.welcome-button.secondary {
+    background: white;
+    color: #FF4286;
+    border: 2px solid #FF4286;
+}
+
+.welcome-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-button.secondary:hover {
+    background: #FF4286;
+    color: white;
+}
+
+/* Auth Form Styles (applied to login and signup forms) */
+.auth-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: 'Quicksand', sans-serif; /* Use Quicksand for inputs */
+}
+
+.form-group textarea { min-height: 100px; resize: vertical; }
+
+.form-group input:focus,
+.form-group textarea:focus { outline: none; border-color: var(--secondary-color); box-shadow: 0 0 10px rgba(253, 127, 120, 0.2); }
+
+.form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+.remember-me { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+.forgot-password { color: var(--primary-color); text-decoration: none; font-size: 14px; transition: color 0.3s ease; }
+.forgot-password:hover { color: var(--secondary-color); }
+
+.auth-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 16px;
+    font-family: 'Merienda', cursive;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 20px 0;
+}
+.authbutton {
+    position:absolute;
+    height: 50px;
+    width: 100px;
+    padding: 15px;
+    background: #f5a0bf;
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    font-size: 26px;
+    font-family: 'Merienda', cursive;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.auth-button:hover {
+
+    translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 66, 134, 0.3);
+}
+
+.auth-footer { margin-top: 20px; }
+
+.auth-footer a { color: var(--primary-color); text-decoration: none; transition: color 0.3s ease; }
+.auth-footer a:hover { color: var(--secondary-color); }
+
+.password-requirements {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    text-align: left; /* Align requirements to the left */
+    padding-left: 10px;
+}
+.password-requirements ul { list-style: none; padding-left: 0; margin: 5px 0; }
+.password-requirements li { margin: 2px 0; color: #999; }
+.password-requirements li.valid { color: #4CAF50; }
+.password-requirements li.invalid { color: #f44336; }
+
+.stats-inputs {
+    display: flex;
+    gap: 20px;
+}
+
+.stats-inputs .form-group {
+    flex: 1;
+}
+
+/* Profile Upload Styles */
+.profile-upload { width: 120px; height: 120px; margin: 0 auto 30px; position: relative; border-radius: 50%; overflow: hidden; cursor: pointer; border: 3px solid var(--primary-color); }
+.profile-preview { width: 100%; height: 100%; }
+.profile-preview img { width: 100%; height: 100%; object-fit: cover; }
+.upload-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+.profile-upload:hover .upload-overlay { opacity: 1; }
+.upload-overlay span { color: white; font-size: 14px; text-align: center; padding: 0 10px; }
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+    .profile-header { flex-direction: column; text-align: center; }
+    .profile-stats { grid-template-columns: 1fr; }
+    .profile-card, .auth-card { padding: 30px 20px; }
+    .auth-content h2 { font-size: 28px; }
+    .profile-upload { width: 100px; height: 100px; }
+
+    .welcome-title { font-size: 36px; }
+    .welcome-subtitle { font-size: 18px; }
+    .welcome-buttons { flex-direction: column; width: 100%; max-width: 300px; }
+    .welcome-button { width: 100%; padding: 12px 25px; font-size: 16px; }
+    .stats-inputs { flex-direction: column; gap: 0; }
+    .stats-inputs .form-group { flex: none; }
+}
+
+@media (max-width: 520px) { /* Added from previous profile card styles */
+    body {
+        padding-top: 80px;
+    }
+
+    .profile-card {
+        width: 90%;
+        height: auto;
+        padding: 50px 20px 30px;
+        border-radius: 50px;
+        margin-top: 40px; /* Adjust margin top */
+    }
+
+    .profile-pic {
+        top: -60px; /* Adjust profile pic position */
+        width: 100px; /* Adjust profile pic size */
+        height: 100px; /* Adjust profile pic size */
+    }
+
+    h2 {
+        font-size: 30px;
+        margin-top: 20px; /* Adjust margin top */
+    }
+
+    .role {
+        font-size: 20px;
+        margin-top: 20px; /* Adjust margin top */
+    }
+
+    .stats {
+        margin-left: 0;
+        width: 100%;
+        font-size: 16px;
+        justify-content: space-around;
+    }
+
+    .stats strong {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) { /* Combined and adjusted from previous styles */
+    body {
+        padding-top: 60px; /* Adjust padding top */
+    }
+
+    .profile-card, .auth-card {
+        width: 95%; /* Adjust width */
+        padding: 20px 10px; /* Adjust padding */
+        border-radius: 40px; /* Adjust border radius */
+        margin-top: 30px; /* Adjust margin top */
+    }
+
+    .profile-pic {
+        top: -50px; /* Adjust profile pic position */
+        width: 80px; /* Adjust profile pic size */
+        height: 80px; /* Adjust profile pic size */
+    }
+
+    .profile-info h1, .auth-content h2 {
+        font-size: 24px;
+    }
+
+    .form-group input, .form-group textarea {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .auth-button, .welcome-button {
+        padding: 10px 15px; /* Adjusted button padding */
+        font-size: 14px; /* Adjusted button font size */
+        min-width: auto; /* Remove min-width */
+    }
+
+    .profile-upload { width: 80px; height: 80px; }
+
+    .welcome-title { font-size: 28px; }
+    .welcome-subtitle { font-size: 16px; }
+}
+
+@media (max-width: 240px) { /* Added from previous profile card styles */
+    body {
+        padding-top: 40px; /* Adjust padding top */
+    }
+
+    .profile-card, .auth-card {
+        width: 95%;
+        height: auto;
+        padding: 30px 10px 15px; /* Adjust padding */
+        border-radius: 30px; /* Adjust border radius */
+        margin-top: 20px; /* Adjust margin top */
+    }
+
+    .profile-pic {
+        top: -40px; /* Adjust profile pic position */
+        width: 60px; /* Adjust profile pic size */
+        height: 60px; /* Adjust profile pic size */
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-top: 10px; /* Adjust margin top */
+    }
+
+    .role {
+        font-size: 12px;
+        margin-top: 10px; /* Adjust margin top */
+    }
+
+    .stats {
+        flex-direction: column;
+        gap: 5px;
+        margin-left: 0;
+        width: 100%;
+        font-size: 10px;
+    }
+
+    .stats strong {
+        font-size: 14px;
+    }
+    .welcome-title { font-size: 20px; }
+    .welcome-subtitle { font-size: 14px; }
+    .welcome-button { font-size: 12px; }
+}
+
+/* Ensure content stays above background */
+.profile-card, .welcome-container {
+    position: relative;
+    z-index: 1;
+}
+
+#logoutButton {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    padding: 8px 15px; /* Adjust padding for smaller size */
+    font-size: 12px; /* Adjust font size */
+    z-index: 10; /* Ensure it's above other elements */
+} 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link
+      href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Quicksand:wght@500&display=swap"
+      rel="stylesheet">
+</head>
+<body>
+  <div class="header-bg">
+    <div class="bubble1"></div>
+    <div class="bubble2"></div>
+    <div class="bubble3"></div>
+    <div class="bubble4"></div>
+    <div class="bubble5"></div>
+    <div class="bubble6"></div>
+    <div class="bubble7"></div>
+    <div class="bubble8"></div>
+    <div class="bubble9"></div>
+    <div class="bubble10"></div>
+  </div>
+  <div class="profile-card">
+    <div class="profile-pic">
+      <img id="profileImage" src="../assets/default-avatar.png" alt="Profile Picture">
+    </div>
+    <h2 id="fullName">Loading...</h2>
+    <p class="location" id="location">Loading...</p>
+    <p class="role" id="role">Loading...</p>
+    <div class="stats">
+      <div>
+        <strong id="projects">0</strong>
+        <span>Projects</span>
+      </div>
+      <div>
+        <strong id="posts">0</strong>
+        <span>Posts</span>
+      </div>
+      <div>
+        <strong id="experience">0</strong>
+        <span>Experience</span>
+      </div>
+    </div>
+    
+  </div>
+  <button id="logoutButton" class="authbutton" style="margin-top: 20px;">Logout</button>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module">
+    import { getUserProfile, signOut } from '../js/supabase.js'
+
+    // Load profile data
+    async function loadProfile() {
+      try {
+        const { data, error } = await getUserProfile()
+        if (error) throw error
+
+        // Update profile information
+        document.getElementById('fullName').textContent = data.full_name
+        document.getElementById('location').textContent = data.location
+        document.getElementById('role').textContent = data.role
+        document.getElementById('projects').textContent = data.projects
+        document.getElementById('posts').textContent = data.posts
+        document.getElementById('experience').textContent = data.experience
+
+        // Update profile image if exists
+        if (data.avatar_url) {
+          document.getElementById('profileImage').src = data.avatar_url
+        }
+      } catch (error) {
+        console.error('Error loading profile:', error)
+        alert('Error loading profile data')
+      }
+    }
+
+    // Load profile when page loads
+    loadProfile()
+
+    // Handle logout
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+      try {
+        const { error } = await signOut()
+        if (error) throw error
+        window.location.href = 'main.html'
+      } catch (error) {
+        console.error('Error signing out:', error)
+        alert('Error signing out')
+      }
+    })
+  </script>
+
+  <script>
+    document.querySelectorAll('.bubble').forEach(bubble => {
+      let duration = Math.random() * 5 + 5; // Animazione tra 5 e 10 sec
+      let delay = Math.random() * 3; // Ritardo casuale
+      bubble.style.animationDuration = `${duration}s`;
+      bubble.style.animationDelay = `${delay}s`;
+    });
+  </script>
+</body>
+</html>
