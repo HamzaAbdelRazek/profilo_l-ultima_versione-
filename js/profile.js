@@ -49,7 +49,7 @@ document.getElementById('logoutButton').addEventListener('click', async () => {
     try {
         const { error } = await signOut()
         if (error) throw error
-        window.location.href = 'main.html'
+        window.location.href = 'index.html'
     } catch (error) {
         console.error('Error signing out:', error)
         alert('Error signing out')
